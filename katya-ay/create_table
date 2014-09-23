@@ -1,0 +1,8 @@
+var async = require('async'),
+    redis = require('redis').createClient(),
+    await = require('asyncawait/await'),
+    asyncFunc = require('asyncawait/async');
+
+module.exports = asyncFunc (function(options) {
+    await (redis.hmset.bind(redis, 'table:' + options.table.id, options.table));
+});
