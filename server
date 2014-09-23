@@ -1,20 +1,30 @@
-var async = require('async'),
-    net = require('net'),
-    redis = require('redis'),
-    redisClient = redis.createClient();
+var net = require('net');
+var redis = require('redis').createClient();
+var async = require('asyncawait/async');
+var await = require('asyncawait/await');
 
-net.createServer(function(socket) {
-    socket.on('data', function(data) {
-        console.log("DATA: " + data.toString());
-        var task = data.toString();
-
-        redisClient.rpush('tasks', task, function(err, result) {
-            if(err) throw err;
-        });
+function newSocket(socket){
+    socket.write('welcome to server');
+    socket.on('data', function(data){
+        var text = data.toString().trim();
+        switch (text){
+            case 'create table':
+            case 'create players':
+            case 'add card to player':
+            case 'add card to board':
+                (async(function(){
+                    await(redis.lpush.bind(redis, 'tasks', text));
+                    await(redis.lrange.bind(redis, 'tasks', 0, -1));
+                }))();
+                break;
+            default :
+                socket.write('invalid command')
+        }
     });
-    socket.on('end', function() {
+    socket.on('end', function(){
+        console.log('bye, bye');
+    })
+}
 
-    });
-    socket.write('Welcome!');
-
-}).listen(1111);
+var server = net.createServer(newSocket);
+server.listen(8080);
