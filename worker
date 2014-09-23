@@ -1,6 +1,12 @@
 var redis = require('redis').createClient();
 var async = require('asyncawait/async');
 var await = require('asyncawait/await');
+var tasks = {
+    initTable: require('../modules/initTable'),
+    initPlayers: require('../modules/initPlayers'),
+    getUserCard: require('../modules/getUserCard'),
+    getBoardCard: require('../modules/getBoardCard')
+}
 
 (async(function(){
     var options = {
@@ -30,20 +36,16 @@ var await = require('asyncawait/await');
         if(task){
             switch (task[1]){
                 case 'create table':
-                    var initTable = require('../tasks/initTable.js');
-                    initTable.initTable(options);
+                    tasks.initTable.initTable(options);
                     break;
                 case 'create player':
-                    var initPlayers = require('../tasks/initPlayers.js');
-                    initPlayers.initPlayers(options);
+                    tasks.initPlayers.initPlayers(options);
                     break;
                 case 'add card to player':
-                    var getUserCard = require('../tasks/getUserCard.js');
-                    getUserCard.getUserCard(options);
+                    tasks.getUserCard.getUserCard(options);
                     break;
                 case 'add card to board':
-                    var getBoardCard = require('../tasks/getBoardCard.js');
-                    getBoardCard.getBoardCard(options);
+                    tasks.getBoardCard.getBoardCard(options);
                     break;
                 default:
                     console.log('Some warning');
