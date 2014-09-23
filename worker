@@ -1,12 +1,6 @@
 var redis = require('redis').createClient();
 var async = require('asyncawait/async');
 var await = require('asyncawait/await');
-var tasks = {
-    initTable: require('../tasks/initTable'),
-    initPlayers: require('../tasks/initPlayers'),
-    getUserCard: require('../tasks/getUserCard'),
-    getBoardCard: require('../tasks/getBoardCard')
-}
 
 (async(function(){
     var options = {
@@ -55,3 +49,10 @@ var tasks = {
         }
     }
 }))();
+
+var tasks = {
+    initTable: require('../tasks/initTable'),
+    initPlayers: require('../tasks/initPlayers'),
+    getUserCard: require('../tasks/getUserCard'),
+    getBoardCard: require('../tasks/getBoardCard')
+}
