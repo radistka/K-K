@@ -2,11 +2,7 @@ var redis = require('redis').createClient();
 var async = require('asyncawait/async');
 var await = require('asyncawait/await');
 
-
-
-
 (async(function(){
-
     var options = {
         tableId: '1',
         stage: '0',
@@ -29,7 +25,6 @@ var await = require('asyncawait/await');
             }
         ]
     };
-
     while(true){
         var task = await(redis.brpop.bind(redis, 'tasks', 200));
         if(task){
@@ -58,10 +53,3 @@ var await = require('asyncawait/await');
         }
     }
 }))();
-
-
-
-
-
-
-
