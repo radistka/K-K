@@ -1,4 +1,3 @@
-var pocker = require('../modules/pocker.js');
 var redis = require('redis').createClient();
 var async = require('asyncawait/async');
 var await = require('asyncawait/await');
@@ -36,17 +35,24 @@ var await = require('asyncawait/await');
         if(task){
             switch (task[1]){
                 case 'create table':
-                    pocker.initTable(options);
+                    var initTable = require('../tasks/initTable.js');
+                    initTable.initTable(options);
                     break;
                 case 'create player':
-                    pocker.initPlayers(options);
+                    var initPlayers = require('../tasks/initPlayers.js');
+                    initPlayers.initPlayers(options);
                     break;
                 case 'add card to player':
-                    pocker.getUserCard(options);
+                    var getUserCard = require('../tasks/getUserCard.js');
+                    getUserCard.getUserCard(options);
                     break;
                 case 'add card to board':
-                    pocker.getBoardCard(options);
+                    var getBoardCard = require('../tasks/getBoardCard.js');
+                    getBoardCard.getBoardCard(options);
                     break;
+                default:
+                    console.log('Some warning');
+                break;
             }
             console.log('task:'+task[1]);
         }
