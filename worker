@@ -29,7 +29,7 @@ var worker = async(function(){
     while(true){
         var task = await(redis.brpop.bind(redis, 'tasks', 200));
         if(task[1]){
-            var taskPath = '/home/iashyna/Projects/redis/modules/tasks/' + task[1] + '.js';
+            var taskPath = __dirname + '/modules/tasks/' + task[1] + '.js';
             var exist = await(function(done){
                 fs.exists(taskPath, function(exist){
                     done(null, exist);
