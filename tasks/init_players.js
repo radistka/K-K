@@ -5,12 +5,10 @@ var await = require('asyncawait/await');
 module.exports = async(function(options) {
     console.log('init players');
     options.players.forEach(function(player) {
-        await(function(done) {
-            redis.hmset('user:' + player.id, {
+        await( redis.hmset.bind(redis, 'user:' + player.id, {
                 'id': player.id,
                 'name': player.name
-            }, done)
-        });
+            }));
         await( redis.sadd.bind(redis, 'table:' + options.tableId + ':users', player.id));
     })
 });
