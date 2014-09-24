@@ -7,19 +7,11 @@ function newSocket(socket){
     socket.write('welcome to server');
     socket.on('data', function(data){
         var text = data.toString().trim();
-        switch (text){
-            case 'create table':
-            case 'create players':
-            case 'add card to player':
-            case 'add card to board':
-                (async(function(){
-                    await(redis.lpush.bind(redis, 'tasks', text));
-                    await(redis.lrange.bind(redis, 'tasks', 0, -1));
-                }))();
-                break;
-            default :
-                socket.write('invalid command')
-        }
+        (async(function(){
+            await(redis.lpush.bind(redis, 'tasks', text));
+            await(redis.lrange.bind(redis, 'tasks', 0, -1));
+        }))();
+
     });
     socket.on('end', function(){
         console.log('bye, bye');
