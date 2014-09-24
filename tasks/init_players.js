@@ -11,8 +11,6 @@ module.exports = async(function(options) {
                 'name': player.name
             }, done)
         });
-        await(function(done) {
-            redis.sadd('table:' + options.tableId + ':users', player.id, done)
-        })
+        await( redis.sadd.bind(redis, 'table:' + options.tableId + ':users', player.id));
     })
 });
