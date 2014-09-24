@@ -14,39 +14,31 @@ options = {
     board: { "id": "1" }
 };
 
-var forever = function() {
-    worker();
-};
-
 var worker = async (function() {
 
     var task = await (redis.brpop.bind(redis, 'tasks', 5));
-    console.log(task);
 
-    if(task != null) {
+    if(task) {
         task = task[1].trim();
 
         var path = __dirname + '/tasks/' + task + '.js';
-        console.log(path);
 
-        var isExist = await (function(done) {
+        var exist = await (function(done) {
             fs.exists(path, function(exists) {
-                console.log(exists);
                 done(null, exists);
             })
         });
 
-        if(isExist) {
+        if(exist) {
             var requiredFile = './tasks/' + task,
                 command = require(requiredFile);
-            command(options);
+                command(options);
         } else {
             var message = "File doesn't exist";
         }
     }
 
-    forever();
-
+    worker();
     return task;
 });
 worker();
