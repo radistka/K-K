@@ -1,0 +1,11 @@
+var redis = require('redis').createClient(),
+    await = require('asyncawait/await'),
+    async = require('asyncawait/async');
+
+module.exports = async (function(options) {
+
+    for(var i = 0; i < 3; i++) {
+        var card = await (redis.spop.bind(redis, 'table:' + options.table.id + ':deck'));
+        await (redis.sadd.bind(redis, "board:" + options.board.id + ":cards", card));
+    }
+});
