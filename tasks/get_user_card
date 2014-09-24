@@ -2,7 +2,7 @@ var redis = require('redis').createClient();
 var async = require('asyncawait/async');
 var await = require('asyncawait/await');
 
-exports.getUserCard = async(function(options) {
+module.exports = async(function(options) {
     options.players.forEach(function(player) {
         var card = await(function(done) {
             redis.spop('table:' + options.tableId + ':deck', done);
