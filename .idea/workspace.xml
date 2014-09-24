@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ca236cc-4d21-4850-9a2c-2acf53827dde" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tasks/smth.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="K-K.iws" />
@@ -279,7 +277,11 @@
       <created>1411567147756</created>
       <updated>1411567147756</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="create smth2">
+      <created>1411567871483</created>
+      <updated>1411567871483</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -326,7 +328,8 @@
     <MESSAGE value="modify tasks func" />
     <MESSAGE value="modify func get user card" />
     <MESSAGE value="create smth" />
-    <option name="LAST_COMMIT_MESSAGE" value="create smth" />
+    <MESSAGE value="create smth2" />
+    <option name="LAST_COMMIT_MESSAGE" value="create smth2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
