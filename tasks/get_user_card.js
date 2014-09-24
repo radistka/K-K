@@ -3,11 +3,7 @@ var async = require('asyncawait/async');
 var await = require('asyncawait/await');
 
 module.exports = async(function(options) {
-  var card = await(function(done) {
-      redis.spop('table:' + options.tableId + ':deck', done);
-  });
-  await(function(done) {
-      redis.sadd('user:' + player.id + ':cards', card, done)
-  });
+  var card = await(redis.spop.bind(redis, 'table:' + options.tableId + ':deck'));
+  await(redis.sadd.bind(redis, 'user:' + player.id + ':cards', card));
   console.log('cardToUser: ' + card)
 });
