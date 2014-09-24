@@ -2,7 +2,8 @@ var redis = require('redis').createClient();
 var async = require('asyncawait/async');
 var await = require('asyncawait/await');
 
-exports.initPlayers = async(function(options) {
+module.exports = async(function(options) {
+    console.log('init players');
     options.players.forEach(function(player) {
         await(function(done) {
             redis.hmset('user:' + player.id, {
